@@ -45,7 +45,7 @@ execute:
   # Show warnings
   warning: false
   # Cache code results
-  cache: false
+  cache: true
 # Template specific
 journalinfo: "Publication reference"
 archive: "DOI: xxx/xx"
@@ -184,6 +184,4 @@ paracou6 %>%
 
 BCI est une forêt secondarisée [@Raby2017].
 Sa diversité pourrait être augmentée selon la théorie de la perturbation intermédiaire [@Connell1978].
-
-# Bibliographie
 
