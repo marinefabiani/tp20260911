@@ -25,8 +25,8 @@ author:
     url: https://example.org/
 # Abstract and Keywords
 abstract: |
-  This document is only a demo explaining how to use the Stylish Article template.
-keywords: [template, demo]
+  Ce document vise à comparer les forêt de Paracou et de BCI.
+keywords: [espèce, forêt]
 # Bibliography
 reference-section-title: References
 bibliography: references.bib
@@ -122,11 +122,9 @@ set.seed(973)
 
 # Introduction
 
-La question de la diversité des forêts tropicales fascine les écologues parce qu'elle a des enjeux très importants [@Gibson2011].
-est qu'elle est difficile à comprendre [@Wright2002b].
-Des modèles ont été publiés [@Liang2022].
-
-A l'heure des menaces sur la biodiversité [@Fadrique2026], une connaissance plus détaillée de la diversité des forêts très étudiées est utile.
+- La question de la diversité des forêts tropicales fascine les écologues parce qu'elle a des enjeux très importants [@Gibson2011]. est qu'elle est difficile à comprendre [@Wright2002b]. Des modèles ont été publiés [@Liang2022].
+- A l'heure des menaces sur la biodiversité [@Fadrique2026], une connaissance plus détaillée de la diversité des forêts très étudiées est utile.
+- L'objectif est de comparer la diversité de la forêt de Paracou [@Gourlet-Fleury2004] et celle de BCI [@Raby2017].
 
 # Matériels et méthodes
 
@@ -155,6 +153,8 @@ BCI %>%
   BCI_50ha
 ```
 
+- Les analyses sont réalisées avec R [@R] et le package divent [@Marcon2026a].
+
 # Résultats
 
 ```{r}
@@ -180,8 +180,7 @@ paracou6 %>%
 
 # Discussion
 
-@MacArthur1967 montrent mathématiquement que la richesse spécifique (le nombre d'espèces) d'une île est un équilibre dynamique entre le taux d'immigration et le taux d'extinction, ce dernier étant directement dicté par la taille de l'île.
-
-BCI est une forêt secondarisée [@Raby2017].
-Sa diversité pourrait être augmentée selon la théorie de la perturbation intermédiaire [@Connell1978].
-
+- Cette étude a permis de démontrer que la diversité des espèces est plus importante au sein de la forêt de Paracou que dans la forêt de BCI.
+- Plusieurs hypothèses peuvent expliquer cela :
+- @MacArthur1967 montrent mathématiquement que la richesse spécifique (le nombre d'espèces) d'une île est un équilibre dynamique entre le taux d'immigration et le taux d'extinction, ce dernier étant directement dicté par la taille de l'île.
+- BCI est une forêt secondarisée [@Raby2017]. Sa diversité pourrait être augmentée selon la théorie de la perturbation intermédiaire [@Connell1978].
