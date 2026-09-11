@@ -122,9 +122,10 @@ set.seed(973)
 
 # Introduction
 
-- La question de la diversité des forêts tropicales fascine les écologues parce qu'elle a des enjeux très importants [@Gibson2011]. est qu'elle est difficile à comprendre [@Wright2002b]. Des modèles ont été publiés [@Liang2022].
+- La question de la diversité des forêts tropicales fascine les écologues parce qu'elle a des enjeux très importants [@Gibson2011]. est qu'elle est difficile à comprendre [@Wright2002b].
+- Des modèles ont été publiés [@Liang2022].
 - A l'heure des menaces sur la biodiversité [@Fadrique2026], une connaissance plus détaillée de la diversité des forêts très étudiées est utile.
-- L'objectif est de comparer la diversité de la forêt de Paracou [@Gourlet-Fleury2004] et celle de BCI [@Raby2017].
+- L'objectif est de comparer la diversité locale de la forêt de Paracou [@Gourlet-Fleury2004] et celle de BCI [@Raby2017].
 
 # Matériels et méthodes
 
@@ -153,12 +154,12 @@ BCI %>%
   BCI_50ha
 ```
 
-- Les analyses sont réalisées avec R [@R] et le package divent [@Marcon2026a].
-
 # Résultats
 
+::: {#fig-Profils}
 ```{r}
 #| label: Profils
+ggtheme_set()
 paracou6 %>% 
   # Vecteur des noms d'espèce de chaque arbre
   pull(spName) %>% 
@@ -176,7 +177,13 @@ paracou6 %>%
   autoplot() +
   # Titre de la légende
   labs(color = "Forêt", linetype = "Forêt")
+  # Supression du cartouche
+  theme(legend.position = none)
 ```
+
+Profils de diversité de Paracou (courbe bleue) parcelle 6 et BCI (courbe rouge).
+La figure représente le nombre effectif d'espèces (nombre de Hill) en fonction de la diversité
+:::
 
 # Discussion
 
