@@ -6,5 +6,4 @@
 *.pdf
 *_files/
 *.log
-*.tex
 index_cache/
