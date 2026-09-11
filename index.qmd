@@ -14,14 +14,14 @@ format:
 author:
   - name: Marine Fabiani
     affiliations:
-      - name: Dummy Organization
-        department: Scientific Department
+      - name: Université de Montpellier
+        department: BioGET
         address: Somewhere
-        city: City
-        country: Country
-        postal-code: 9999
+        city: Montpellier
+        Country: France
+        postal-code: 34090
     orcid: 0000-0000-0000-0000
-    email: JD@example.org
+    email: marine.fabiani@etu.umontpellier.fr
     url: https://example.org/
 # Abstract and Keywords
 abstract: |
@@ -64,7 +64,8 @@ packages_required <- c(
   "knitr",
   # Add specific packages here
   "tidyverse", 
-  "gt"
+  "divent",
+  "vegan"
 )
 # Already installed?
 packages_installed <- vapply(
@@ -121,8 +122,68 @@ set.seed(973)
 
 # Introduction
 
+La question de la diversité des forêts tropicales fascine les écologues parce qu'elle a des enjeux très importants [@Gibson2011].
+est qu'elle est difficile à comprendre [@Wright2002b].
+Des modèles ont été publiés [@Liang2022].
+
+A l'heure des menaces sur la biodiversité [@Fadrique2026], une connaissance plus détaillée de la diversité des forêts très étudiées est utile.
+
 # Matériels et méthodes
+
+- Présentation du site de Paracou
+
+```{r}
+#| label: Paracou
+library("tidyverse")
+paracou6 <- read_csv2("data/Paracou6.csv")
+```
+
+- Présentation du site de BCI
+
+```{r}
+#| label: BCI
+library("vegan")
+data(BCI)
+library("divent")
+BCI %>% 
+  # Création d'un objet "abundances"
+  as_abundances() %>% 
+  # Les poids des parcelles sont égaux
+  mutate(weight = 1) %>% 
+  # Regrouper toutes les parcelles
+  metacommunity() ->
+  BCI_50ha
+```
 
 # Résultats
 
+```{r}
+#| label: Profils
+paracou6 %>% 
+  # Vecteur des noms d'espèce de chaque arbre
+  pull(spName) %>% 
+  # Création d'un objet "abundances"
+  as_abundances() %>% 
+  # Ajout des données de BCI
+  bind_rows(BCI_50ha) %>% 
+  # Remplacement des NA par 0
+  mutate(across(everything(), ~ replace_na(.x, 0))) %>% 
+  # Nom des sites
+  mutate(site = c("Paracou", "BCI")) %>% 
+  # Profil de diversité avec enveloppe de confiance
+  profile_hill(n_simulations = 10) %>% 
+  # Figure
+  autoplot() +
+  # Titre de la légende
+  labs(color = "Forêt", linetype = "Forêt")
+```
+
 # Discussion
+
+@MacArthur1967 montrent mathématiquement que la richesse spécifique (le nombre d'espèces) d'une île est un équilibre dynamique entre le taux d'immigration et le taux d'extinction, ce dernier étant directement dicté par la taille de l'île.
+
+BCI est une forêt secondarisée [@Raby2017].
+Sa diversité pourrait être augmentée selon la théorie de la perturbation intermédiaire [@Connell1978].
+
+# Bibliographie
+
